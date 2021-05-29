@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view层 模板 -->
+<div id="app">
+    <span v-bind:title="msg">
+        鼠标悬停几秒中查看此处动态绑定的提示信息!
+    </span>
+</div>
+
+<script>
+    // ViewModel对象
+    var vm = new Vue({
+        el: "#app",
+        // Model
+        data:{
+            msg: "hello world"
+        }
+    });
+</script>
+</body>
+</html>

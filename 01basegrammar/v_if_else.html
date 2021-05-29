@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view层 模板 -->
+<div id="app">
+    <!-- 这里不写就是 ok==true -->
+    <span v-if="ok">yes</span>
+    <span v-else>no</span>
+
+    <span v-if="type==='A'">A</span>
+    <span v-else-if="type==='B'">B</span>
+    <span v-else>C</span>
+
+    <span v-if="type!='A'">A</span>
+</div>
+
+<script>
+    // ViewModel对象
+    var vm = new Vue({
+        el: "#app",
+        // Model
+        data:{
+            ok: true,
+            type: 'A',
+
+        }
+    });
+</script>
+</body>
+</html>

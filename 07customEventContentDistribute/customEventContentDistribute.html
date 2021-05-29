@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义事件内容分发测试</title>
+    <!--v-cloak 解决闪烁问题-->
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!-- View -->
+<div id="vue" v-cloak>
+    <myslot>
+        <cominslot1-coursenames slot="slot1" :coursenames="coursenamesindata"></cominslot1-coursenames>
+        <cominslot2-coursename slot="slot2" v-for="(c,index) in coursesindata"
+                               :cincomprops="c" :indexincomprops="index"
+                               v-on:removeincomponent="removeinvmmethod(index,index+6)"></cominslot2-coursename>
+    </myslot>
+</div>
+<!--引入 JS 文件-->
+<script src="../js/vue.js"></script>
+<script src="../js/axios.js"></script>
+<script type="text/javascript">
+    Vue.component("cominslot1-coursenames",{
+        props: ['coursenames'],
+        template: '<div>{{coursenames}}</div>'
+    })
+
+    Vue.component("cominslot2-coursename",{
+        props: ['cincomprops','indexincomprops'],
+        // @ === v-on:
+        template: '<li>{{indexincomprops}}==={{cincomprops}}<button @click="eventhappenincomponent">删除</button></li>',
+        // 在组件中定义方法
+        methods:{
+            eventhappenincomponent: function (param1,param2) {
+                this.$emit("removeincomponent",param1,param2);
+            }
+        }
+    })
+
+    Vue.component("myslot",{
+        template: '<div>' +
+            '<slot name="slot1"></slot>' +
+            '<ul>' +
+            '<slot name="slot2"></slot>' +
+            '</ul>' +
+            '</div>'
+    })
+    // ViewModel对象
+    let vm = new Vue({
+        el: '#vue',
+        // Model
+        data: {
+            msg: "hello world",
+            coursenamesindata: "课程名称",
+            coursesindata: ["java","c++","c"]
+        },
+        methods:{
+            // 在控制台测试 通过vm.removeinvmmethod(index)的方式测试是否删除成功
+            removeinvmmethod:function(param1,param2){
+                alert(param1+param2);
+                // js数组的万能函数splice
+                this.coursesindata.splice(param1,1);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

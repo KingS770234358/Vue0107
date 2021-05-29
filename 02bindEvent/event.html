@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view层 模板 -->
+<div id="app">
+    <button v-on:click="sayHi1">click me say hi no param</button>
+    <button v-on:click="sayHi2(1)">click me say hi param</button>
+</div>
+<script>
+    // ViewModel对象
+    var vm = new Vue({
+        el: "#app",
+        // Model
+        data:{
+            msg: "HI!"
+        },
+        methods: { //方法必须定义在vue的methods对象中
+            sayHi1: function () {
+                alert(this.msg);
+            },
+            sayHi2: function (a) {
+                alert(this.msg+a);
+            }
+        }
+    });
+</script>
+</body>
+</html>

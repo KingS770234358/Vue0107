@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性测试</title>
+    <!--v-cloak 解决闪烁问题-->
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="vue" v-cloak>
+    <!-- vue实体methods中定义的方法要使用函数的形式调用
+         在控制台中只能以函数的形式使用
+         即使不刷新页面,返回的数据也在动态实时更新
+     -->
+    <p>currentTime1 {{currentTime1()}}</p>
+    <!-- vue实体computed中定义的方法使用属性的形式调用
+         在控制台中只能以属性的形式使用
+         不刷新页面的情况下,返回的数据不会发生任何改变
+         直到刷新页面 或者 改变方法内部的属性值(this.message) 返回的数据才会刷新
+    -->
+    <p>currentTime2 {{currentTime2}}</p>
+</div>
+<!--引入 JS 文件-->
+<script src="../js/vue.js"></script>
+<script src="../js/axios.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#vue',
+        data: {
+            msg: "hello world"
+        },
+        methods:{
+            currentTime1: function () {
+                return Date.now();  // 返回当前的时间
+            }
+        },
+        // 计算属性
+        computed:{ // computed methods中的方法名称不能重复
+                   // 重复的以methods中的为主
+            currentTime2: function () {
+                this.msg; // 用来测试computed的缓存功能
+                return Date.now();  // 返回当前的时间
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

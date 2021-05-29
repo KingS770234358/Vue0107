@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view层 模板 -->
+<div id="app">
+    {{msg}}
+</div>
+
+<script>
+    // ViewModel对象
+    var vm = new Vue({
+        el: "#app",
+        // Model
+        data:{
+            msg: "hello world"
+        }
+    });
+</script>
+</body>
+</html>

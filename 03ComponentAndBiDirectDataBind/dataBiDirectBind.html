@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view层 模板 -->
+<div id="app">
+    输入的数据:<input type="text" v-model="msg">{{msg}}
+    <hr/>
+    文本区域:<textarea v-model="msg"></textarea>{{msg}}
+    <hr/>
+    性别:
+    <input type="radio" name="sex" value="男" v-model="sex">男
+    <input type="radio" name="sex" value="女" v-model="sex">女<br/>
+    {{sex}}
+    <hr/>
+    爱好:
+    <input type="checkbox" name="hobbies" value="足球" v-model="hobbies">足球
+    <input type="checkbox" name="hobbies" value="篮球" v-model="hobbies">篮球
+    <input type="checkbox" name="hobbies" value="排球" v-model="hobbies">排球
+    <input type="checkbox" name="hobbies" value="乒乓球" v-model="hobbies">乒乓球<br/>
+    {{hobbies}}
+    <hr/>
+    籍贯:
+    <select v-model="birthplace">
+        <option value="" disabled>--- 请选择 ---</option>
+        <option>福建</option>
+        <option>黑龙江</option>
+    </select><br/>
+    {{birthplace}}
+</div>
+<script>
+    // ViewModel对象
+    let vm = new Vue({
+        el: "#app",
+        // Model
+        data:{
+            msg: "HI!",
+            sex: "男",
+            hobbies: ["足球","排球"],
+            birthplace: "福建"
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

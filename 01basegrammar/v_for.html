@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!-- view层 模板 -->
+<div id="app">
+    <li v-for="item in for_array">
+        {{item.message}}
+    </li>
+    <span>{{for_array[0].message}}</span>
+    <!-- 附加索引的遍历 类似python的enumerate -->
+    <li v-for="(item, index) in for_array">
+        {{item.message}}---{{index}}
+    </li>
+</div>
+
+<script>
+    // ViewModel对象
+    var vm = new Vue({
+        el: "#app",
+        // Model
+        data:{
+            for_array: [
+                {message: "mp3"},
+                {message: "mp4"},
+                {message: "avi"}
+            ],
+        }
+    });
+</script>
+</body>
+</html>
